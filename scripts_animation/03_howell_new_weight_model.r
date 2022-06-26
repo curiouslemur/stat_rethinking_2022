@@ -64,9 +64,9 @@ alpha <- 70
 beta <- 0.5
 sigma <- 5
 n_individuals <- 100
-H <- runif(n_individuals,130,170)
-mu <- alpha + beta*(H-mean(H))
-W <- rnorm(n_individuals,mu,sigma)
+H <- runif(n_individuals,130,170); H
+mu <- alpha + beta*(H-mean(H)); mu
+W <- rnorm(n_individuals,mu,sigma); W
 
 dat <- list( H=H , W=W , Hbar=mean(H) )
 
