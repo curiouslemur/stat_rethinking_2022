@@ -1,0 +1,47 @@
+---
+title: "Untitled"
+output: html_document
+date: '2022-06-25'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rethinking)
+```
+# Linear regression
+
+L3 - scientific models
+
+```{r}
+#### NR code - 2022-06-24l
+alpha <- 0
+beta <- 0.5
+sigma <- 5
+n_individuals <- 100
+
+H <- runif(n_individuals, 130, 170) # generates heights between 130 cm and 170 (uniform distribution)
+
+mu <- alpha + beta* H
+W <- rnorm(n_individuals, mu, sigma) # generates W normally distributed
+
+d = data.frame(height = H, weight = W)
+plot( d$height , d$weight , col=col2 , lwd=3 , cex=1.2 , xlab="height (cm)" , ylab="weight (kg)" )
+```
+
+min 38:50 statistic models for how height influences weight.
+
+min 50:30
+```{r}
+n <- 10
+alpha <- rnorm(n, 60, 10)
+beta <- rnorm(n, 0, 10)
+beta <- rlnorm(n, 0, 1); beta
+Hbar <- 150
+Hseq <- seq(from=130, to=170, len=30)
+
+plot(NULL, xlim=c(130, 170), ylim=c(10, 100), xlab="height (cm)", ylab="weight (kg)")
+for (i in 1:n)
+  lines(Hseq, alpha[i] + beta[i]*(Hseq - Hbar), lwd = 3, col =2)
+```
+
+
