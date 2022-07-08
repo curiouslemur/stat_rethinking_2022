@@ -1,4 +1,3 @@
-
 library(rethinking)
 library(animation)
 library(ellipse)
@@ -40,3 +39,4 @@ ani.replay()
 # ani.saveqz(dpi=150)
 # convert -alpha remove -background white -delay 10 -loop 0 frame*.png howell_height_weight_prior2.gif
 # convert -delay 20 gaussian_sim.gif gaussian_sim.gif
+
