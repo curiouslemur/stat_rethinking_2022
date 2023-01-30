@@ -63,6 +63,7 @@ dens(sample.sigma)
 HPDI(sample.mu)
 HPDI(sample.sigma)
 ```
+
 ### for case when posterior is not always so Gaussian in shape
 
 ```{r}
@@ -85,5 +86,45 @@ plot(sample2.mu, sample2.sigma, cex=0.5, col=col.alpha(rangi2, 0.1),
      xlab='mu', ylab='sigma', pch = 16)
 
 dens(sample2.sigma, norm.comp = TRUE)
+```
+
+### 4.3.5 Fitting the model with map
+
+```{r}
+library(rethinking)
+data("Howell1")
+d <- Howell1
+
+d2 <- d[d$age >= 18, ]
+
+flist <- alist(
+  height ~ dnorm(mu, sigma),
+  mu ~ dnorm(156, 10),
+  sigma ~ dunif(0, 50)
+)
+
+m4.1 <- map( flist, data = d2)
+precis(m4.1)
+```
+
+```{r}
+# r code 4.19
+
+m4.2 <- map(
+  alist(
+    height ~ dnorm(mu, sigma),
+    mu ~ dnorm(178, 0.1),
+    sigma ~ dunif(0, 50)
+  ), 
+  data = d2
+)
+precis(m4.2)
+```
+
+# 4.4 Addign a predictor
+
+```{r}
+plot(d2$height ~ d2$weight)
+
 ```
 
